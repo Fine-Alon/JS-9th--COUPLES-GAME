@@ -28,16 +28,20 @@ body {
 .title {}
 
 .game {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
+.disabled {
+}
+
 .card {
   cursor: pointer;
-  width: 10%;
-  height: 150px;
+  width: 130px;
+  height: 180px;
+  margin-bottom: 15px;
   background-color: black;
   color: transparent;
   border-radius: 13px;
@@ -49,9 +53,12 @@ body {
   transition: color .2s ease-in-out, background-color .2s ease-in-out, transform .1s ease-in-out;
 }
 
+
 .card.open {
-  background-color: black;
+  background-color: rgb(128 3 99);
   color: rgb(255, 255, 255);
+  z-index: -2;
+
 }
 
 .card.match {

@@ -1,39 +1,59 @@
-class Card {
-     
-    _open = false
-    _match = false
+import Card from "./card.js"
 
-    constructor(container, number) {
-        this.card = document.createElement('div')
-        this.card.classList.add('card')
-        this.card.textContent = number
+function createGame(container, countCards) {
+    // create game field
+    let mainArr = [],
+        cardsArr = [],
+        firstCard = null,
+        secondCard = null
 
-        this.card.addEventListener('click', () => {
-            if (this._open == false && this._match == false) {
-                this._open = !this._open
+    for (let digit = 1; digit <= countCards / 2; digit++) {
+        mainArr.push(digit, digit);
+    }
+    mainArr = mainArr.sort(() => Math.random() - 0.5)
+
+    for (let el = 0; el < mainArr.length; el++) {
+        cardsArr.push(new Card(container, mainArr[el], activity));
+    }
+
+    function activity(obj) {
+        // logic
+        if (firstCard !== null && secondCard !== null) {
+            if (firstCard.number != secondCard.number) {
+                firstCard.open = false
+                secondCard.open = false
+                firstCard = null
+                secondCard = null
             }
-        })
-        container.append(this.card)
+        }
+        if (firstCard == null) {
+            firstCard = obj
+        } else if (secondCard == null) {
+            secondCard = obj
+        }
+
+        if (firstCard != null && secondCard != null) {
+            if (firstCard.number == secondCard.number) {
+                firstCard.match = true
+                secondCard.match = true
+                firstCard = null
+                secondCard = null
+            }
+        }
+
+        // CONDISHION FOR WINN
+        if (container.querySelectorAll('.match').length == cardsArr.length) {
+            alert('YOU WINN!')
+            container.innerHTML = ''
+            mainArr = []
+            cardsArr = []
+            firstCard = null
+            secondCard = null
+            createGame(document.getElementById('game'), countCards)
+        }
     }
 
-    set open(value) {
-        this._open = value;
-        value ? this.card.classList.add('open') : this.card.classList.remove('open')
-    }
 
-    get open() {
-        return this._open
-    }
-
-    get match() {
-        return this._match;
-    }
-
-    set match(value) {
-        this._match = value;
-        value ? this.card.classList.add('match') : this.card.classList.remove('match');
-    }
 }
 
-
-let newCard = new Card(document.getElementById('game'), 4);
+createGame(document.getElementById('game'), 6)
