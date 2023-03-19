@@ -46,7 +46,7 @@ function createGame(container) {
             $title
         }
     }
-    function endGame(container, countCards) {
+    function endGame(container) {
         createField.$display.innerHTML = 'time out'
         timer = 15
         setTimeout(() => {
@@ -69,15 +69,23 @@ function createGame(container) {
                 createField.$display.innerHTML = 'time out'
                 setTimeout(() => {
                     alert('YOU LOSE!');
-                    endGame(container, countCards);
+                    endGame(container);
                 }, 900);
                 clearInterval(timeToEnd);
             }
         }, 1000)
     }
-
     let createField = field(container, timer)
 
+    // CHECK IF USER ENTER EVENT NUMBER FROM 6 TO 16
+    createField.$input.addEventListener('input', () => {
+        if ((createField.$input.value % 2 !== 0) || (createField.$input.value < 5) || createField.$input.value > 17) {
+            createField.$input.setCustomValidity("Please enter an even number from 6 to 16")
+        } else {
+            createField.$input.setCustomValidity('')
+        }
+        //  && (createField.$input.value > 5) && createField.$input.value <= 16
+    })
     // get value of input and assign it like count of cards
     createField.$wrapper.addEventListener('submit', (e) => {
         e.preventDefault()
@@ -125,7 +133,7 @@ function createGame(container) {
                         secondCard.open = false
                         firstCard = null
                         secondCard = null
-                    }, 500)
+                    }, 600)
                 }
             }
 
@@ -133,7 +141,7 @@ function createGame(container) {
             if (container.querySelectorAll('.match').length == cardsArr.length && cardsArr.length !== 0) {
                 setTimeout(() => {
                     alert('YOU WINN!')
-                    endGame(container, countCards);
+                    endGame(container);
                 }, 1000);
             }
         }
