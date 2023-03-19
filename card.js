@@ -14,7 +14,6 @@ export default class Card {
                 this.open = !this.open
             }
             active(this)
-
         })
     }
     get number() {
