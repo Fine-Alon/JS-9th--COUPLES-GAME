@@ -4,13 +4,14 @@ export default class Card {
     _match = false
 
     constructor(container, number, active) {
-        this.$card = document.createElement('div')
+        this.$card = document.createElement('button')
         this.$card.classList.add('card')
         this.$card.textContent = number
+        this.$card.disabled = false
         this._number = number
         container.append(this.$card)
         this.$card.addEventListener('click', () => {
-            if (this.open == false && this.match == false) {
+            if (this.open === false && this.match === false) {
                 this.open = !this.open
             }
             active(this)
