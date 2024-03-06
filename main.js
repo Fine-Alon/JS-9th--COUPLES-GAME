@@ -1,6 +1,8 @@
 import Card from "./card.js"
 
 function createGame(container) {
+    const TIME_400_MS = 400
+
     // create game field
     let mainArr = [],
         cardsArr = [],
@@ -102,51 +104,41 @@ function createGame(container) {
             mainArr.push(digit, digit);
         }
         mainArr = mainArr.sort(() => Math.random() - 0.5)
-
-        for (let el = 0; el < countCards; el++) {
-            cardsArr.push(new Card(container, mainArr[el], activity));
-        }
-
-        function activity(obj) {
+        const activity = (obj) => {
+            // obj - is currently clicked card
             // logic
-            if (firstCard !== null && secondCard !== null) {
-                if (firstCard.number !== secondCard.number) {
-                    firstCard.open = false
-                    secondCard.open = false
-                    firstCard = null
-                    secondCard = null
-                }
-            }
-            if (firstCard === null) {
-                firstCard = obj
-            } else if (secondCard === null) {
-                secondCard = obj
-            }
+
+            // check if clicked card is null it will be connected with instance of Card
+            if (!firstCard) firstCard = obj
+            else if (!secondCard) secondCard = obj
 
             if (firstCard !== null && secondCard !== null) {
                 // if two cards are open so all cards must be disabled
                 Array.from(container.querySelectorAll('.card')).map(card => {
                     card.disabled = true
-                    console.log(card)
                 })
 
-                if (firstCard.number === secondCard.number) {
-                    firstCard.match = true
-                    secondCard.match = true
-                    firstCard = null
-                    secondCard = null
-                } else {
+                setTimeout(() => {
+                    // after 0.6 sec cards will be clickable again
+                    Array.from(container.querySelectorAll('.card')).map(card => {
+                        card.disabled = false
+                    })
+                }, TIME_400_MS)
+
+                if (firstCard.number !== secondCard.number) {
                     setTimeout(() => {
-                        // after 0.6 sec cards will be clickable again
-                        Array.from(container.querySelectorAll('.card')).map(card => {
-                            card.disabled = false
-                        })
                         // hide card if there is not match
                         firstCard.open = false
                         secondCard.open = false
                         firstCard = null
                         secondCard = null
-                    }, 600)
+                    }, TIME_400_MS)
+
+                } else {
+                    firstCard.match = true
+                    secondCard.match = true
+                    firstCard = null
+                    secondCard = null
                 }
             }
 
@@ -158,6 +150,11 @@ function createGame(container) {
                 }, 1000);
             }
         }
+
+        for (let el = 0; el < countCards; el++) {
+            cardsArr.push(new Card(container, mainArr[el], activity));
+        }
+
 
         createField.$input.value = ''
         createField.$input.disabled = true

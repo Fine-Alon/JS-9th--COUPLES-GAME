@@ -4,18 +4,30 @@ export default class Card {
     _match = false
 
     constructor(container, number, active) {
-        this.$card = document.createElement('button')
-        this.$card.classList.add('card')
-        this.$card.textContent = number
-        this.$card.disabled = false
-        this._number = number
-        container.append(this.$card)
+
+        container.append(this.createElement())
+        this.number = number
+
         this.$card.addEventListener('click', () => {
             if (this.open === false && this.match === false) {
                 this.open = !this.open
             }
             active(this)
         })
+    }
+
+    createElement() {
+        this.$card = document.createElement('button')
+        this.$card.classList.add('card')
+        this.$card.textContent = 3
+        this.$card.disabled = false
+
+        return this.$card
+    }
+
+    set number(num) {
+        this._number = num
+        this.$card.textContent = this._number
     }
     get number() {
         return this._number
@@ -25,7 +37,6 @@ export default class Card {
         this._open = value;
         value ? this.$card.classList.add('open') : this.$card.classList.remove('open')
     }
-
     get open() {
         return this._open;
     }
@@ -34,7 +45,6 @@ export default class Card {
         this._match = value;
         value ? this.$card.classList.add('match') : this.$card.classList.remove('match')
     }
-
     get match() {
         return this._match;
     }
