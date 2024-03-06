@@ -8,7 +8,7 @@ function createGame(container) {
         cardsArr = [],
         firstCard = null,
         secondCard = null,
-        timer = 30,
+        timer = 3000,
         timeToEnd,
         countCards
 
