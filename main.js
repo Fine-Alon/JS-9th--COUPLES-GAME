@@ -1,4 +1,5 @@
 import Card from "./card.js"
+import AmazingCard from "./amazingCard.js";
 
 function createGame(container) {
     const TIME_400_MS = 400
@@ -152,7 +153,7 @@ function createGame(container) {
         }
 
         for (let el = 0; el < countCards; el++) {
-            cardsArr.push(new Card(container, mainArr[el], activity));
+            cardsArr.push(new AmazingCard(container, mainArr[el], activity));
         }
 
 

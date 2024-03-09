@@ -1,106 +1,114 @@
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 *,
 *::after,
 *::before {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 img {
-  max-width: 100%;
+    max-width: 100%;
 }
 
 body {
-  font-family: Arial, Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Arial, Verdana, Geneva, Tahoma, sans-serif;
 }
 
 h3 {
-  margin: 0;
+    margin: 0;
 }
 
 h1 {
-  font-size: 3em;
+    font-size: 3em;
 }
 
 .container {
-  max-width: 1200px;
-  padding: 20px 40px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+    max-width: 1200px;
+    padding: 20px 40px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .game {
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .card {
-  cursor: pointer;
-  width: 130px;
-  height: 180px;
-  margin-bottom: 15px;
-  background-color: black;
-  color: transparent;
-  border-radius: 13px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 60px;
-  font-weight: 900;
-  transition: color .2s ease-in-out, background-color .2s ease-in-out, transform .1s ease-in-out;
+    cursor: pointer;
+    width: 130px;
+    height: 180px;
+    margin-bottom: 15px;
+    background-color: black;
+    color: transparent;
+    border-radius: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    font-weight: 900;
+    transition: color .1s ease-in-out, background-color .1s ease-in-out, transform .1s ease-in-out;
 }
 
 
 .card.open {
-  background-color: rgb(128 3 99);
-  color: rgb(255, 255, 255);
-  z-index: -2;
+    background-color: rgb(128 3 99);
+    color: rgb(255, 255, 255);
+    z-index: -2;
+}
+
+.img {
+    z-index: -1;
+    transition: z-index .11s ease-in-out;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
 }
 
 .card.match {
-  background-color: rgb(2 83 3);
-  color: rgb(228, 228, 228);
-  transform: scale(0.85)
+    background-color: rgb(2 83 3);
+    color: rgb(228, 228, 228);
+    transform: scale(0.85)
 }
 
 .input {
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgb(0, 0, 0);
-  font-size: 30px;
-  margin-bottom: 30px;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgb(0, 0, 0);
+    font-size: 30px;
+    margin-bottom: 30px;
 }
 
 .display {
-  width: 130px;
-  height: 40px;
-  border-radius: 25px;
-  border: 4px solid rgb(0, 0, 0);
-  font-size: 25px;
-  font-weight: 900;
-  text-align: center;
-  margin-bottom: 15px;
+    width: 130px;
+    height: 40px;
+    border-radius: 25px;
+    border: 4px solid rgb(0, 0, 0);
+    font-size: 25px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .title {
-  display: block;
-  margin-bottom: 40px;
+    display: block;
+    margin-bottom: 40px;
 }
 
 h3.title {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .wrapper {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
