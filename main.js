@@ -9,7 +9,7 @@ function createGame(container) {
         cardsArr = [],
         firstCard = null,
         secondCard = null,
-        timer = 3000,
+        timer = 30,
         timeToEnd,
         countCards
 
